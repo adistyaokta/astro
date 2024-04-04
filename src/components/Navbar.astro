@@ -1,0 +1,42 @@
+---
+const pathname = Astro.url.pathname;
+
+interface MenuItem {
+  name: string;
+  path: string;
+}
+
+const menuList: MenuItem[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Pokedex', path: '/pokedex' },
+  //   { name: 'Home3', path: '/3' },
+  //   { name: 'Home4', path: '/4' },
+];
+---
+
+<nav
+  class='w-full min-h-14 bg-white flex flex-row items-center justify-between py-1 fixed top-0 left-0 z-10'
+>
+  <div class='w-1/2 h-full flex items-center'>
+    <span
+      class='w-52 h-full flex justify-center items-center cursor-pointer font-black text-lg'
+      >ASTRO NI BOZZ</span
+    >
+  </div>
+  <div class='w-1/2 h-full flex justify-end'>
+    <ul class='flex flex-row w-1/2 divide-x-2'>
+      {
+        menuList.map((menu) => (
+          <li class='w-1/2 text-center px-2 py-1 items-center'>
+            <a
+              href={menu.path}
+              class={`w-full h-full flex items-center justify-center hover:bg-slate-300 ${menu.path === pathname ? 'bg-slate-900 text-white' : ''}`}
+            >
+              {menu.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>

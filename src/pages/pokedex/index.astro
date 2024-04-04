@@ -1,0 +1,20 @@
+---
+import Card from '../../components/Card.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const res = await fetch(`${import.meta.env.PUBLIC_BASE_URL}/pokemon`);
+const { results } = await res.json();
+
+console.log(results);
+---
+
+<MainLayout title='Pokemon List'>
+  <div class='h-1/2 w-full'>
+    <div class='flex flex-col gap-3 py-10 justify-center items-center'>
+      <h1 class='font-bold text-4xl text-slate-50'>Pokemon List</h1>
+      <div class='w-2/3 justify-center grid grid-cols-3 gap-2 items-center'>
+        {results.map((data: {}) => <Card data={data} />)}
+      </div>
+    </div>
+  </div>
+</MainLayout>
